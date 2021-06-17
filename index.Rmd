@@ -1,0 +1,47 @@
+---
+title: "El junco de los páramos (Junco vulcani)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Preparativos
+
+```{r carga-paquetes, message=FALSE, warning=FALSE}
+# Carga de paquetes
+
+library(dplyr)
+library(sf)
+library(DT)
+library(plotly)
+library(leaflet)
+```
+
+```{r carga-datos}
+# Carga de datos
+junco_vulcani <-
+  st_read(
+    "https://raw.githubusercontent.com/gf0604-procesamientodatosgeograficos/2021i-datos/main/gbif/junco_vulcani-cr-registros.csv",
+    options = c(
+      "X_POSSIBLE_NAMES=decimalLongitude",
+      "Y_POSSIBLE_NAMES=decimalLatitude"
+    ),
+    quiet = TRUE
+  )
+
+# Asignación de CRS
+st_crs(junco_vulcani) = 4326
+```
+
+# Introducción
+El junco de los páramos (*Junco vulcani*) habita en zonas abiertas en elevaciones altas, usualmente por encima de los 3000 m. Suele posarse sobre el suelo en pequeños arbustos, generalmente en parejas o en grupos pequeños. Su rango es muy limitado: solo en Costa Rica o en el oeste de Panamá (eBird, [Junco vulcani](https://ebird.org/species/voljun1)).
+
+# Tabla de registros de presencia
+
+# Gráfico de estacionalidad
+
+# Gráfico de historial
+
+# Mapa de distribución
