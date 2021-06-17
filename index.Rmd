@@ -54,7 +54,7 @@ El junco de los páramos (*Junco vulcani*) habita en zonas abiertas en elevacion
 
 # Tabla de registros de presencia
 
-```{r}
+```{r tabla-registros}
 # Tabla de registros de presencia
 junco_vulcani %>%
   st_drop_geometry() %>%
@@ -65,8 +65,24 @@ junco_vulcani %>%
   )
 ```
 
-
 # Gráfico de estacionalidad
+
+```{r grafico-estacionalidad}
+# Gráfico de estacionalidad
+junco_vulcani %>%
+  st_drop_geometry() %>%
+  group_by(mes = format(as.Date(eventDate, "%Y-%m-%d"), "%m")) %>%
+  summarize(suma_registros = n()) %>%
+  filter(!is.na(mes))  %>%
+  plot_ly(x = ~ mes,
+          y = ~ suma_registros,
+          type="scatter", mode="markers", fill = "tozeroy") %>%
+  layout(title = "Estacionalidad",
+         xaxis = list(title = "Mes"),
+         yaxis = list(title = "Cantidad de registros"))
+
+```
+
 
 # Gráfico de historial
 
